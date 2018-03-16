@@ -9,6 +9,14 @@ const ItemCtrl = (function(){
     this.calories = calories;
   }
 
+  // Data Structure / State
+  const data = {
+    item: [],
+    // When I click the update button, then it'll reset to currentItem
+    currentItem: null,
+    totalCalories: 0
+  } 
+
 })();
 
 // UI Controller
