@@ -1,6 +1,7 @@
 // Storage Controller - LocalStorage
 
 // Item Controller - State of our Application
+
 const ItemCtrl = (function(){
   // Item Constructor
   const Item = function(id, name, calories){
@@ -21,14 +22,36 @@ const ItemCtrl = (function(){
     totalCalories: 0
   } 
 
+  // Public Methods
+  return {
+    logData: function(){
+      return data;
+    }
+  }
 })();
 
 // UI Controller
+
 const UICtrl = (function(){
+
+  // Public Methods
+  return {
+
+  }
 
 })();
 
 // App Controller
+
 const App = (function(ItemCtrl, UICtrl){
 
+  // Public Methods
+  return {
+    init: function(){
+      console.log('Initializing App....');
+    }
+  }
 })(ItemCtrl, UICtrl);
+
+// Init App
+App.init();
