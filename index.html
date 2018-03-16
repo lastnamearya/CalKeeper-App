@@ -14,7 +14,83 @@
   <title>CalKeeper | Keep Track your Daily Calories</title>
 </head>
 <body>
-  
+
+  <!-- Navigation Bar of our APP -->
+
+  <nav>
+    <!-- nav-wrapper to make our navigation bar & we're assign blue color to it -->
+    <div class="nav-wrapper blue">
+      <!-- container push everything into middle -->
+      <div class="container">
+        <a href="#" class="brand-logo center">CalKeeper</a>
+        <!-- Clear Button -->
+        <ul class="right">
+          <li><a href="#" class="clear-btn btn blue lighten-3">Clear All</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <br>
+
+  <!-- Form Area -->
+
+  <div class="container">
+    <!-- I put form inside a card -->
+    <div class="card">
+      <!-- For our Main Content -->
+      <div class="card-content">
+        <!-- Title of Form Card -->
+        <span class="card-title">Add Meal / Food Item</span>
+        <!-- Form for Input -->
+        <form class="col">
+          <!-- row for our grid system -->
+          <div class="row">
+            <!-- Splitting Input into two fields, one for the Meal and other for the Calories -->
+            <!-- Meal Input -->
+            <div class="input-field col s6">
+              <!-- Meal Input & Label -->
+              <label for="item-name">Meal</label>
+              <input type="text" placeholder="Add Item" id="item-name">
+            </div>
+            <!-- Calories Input -->
+            <div class="input-field col s6">
+              <!-- Calories Input & Label -->
+              <label for="item-calories">Calories</label>
+              <input type="number" placeholder="Add Calories" id="item-calories">
+            </div>
+
+            <!-- Button to add our Inputs -->
+
+            <!-- Add Meal -->
+            <button class="add-btn btn blue darken-3">
+              <!-- Add Icon from FontAwesome -->
+              <i class="fa fa-plus"></i> Add Meal
+            </button>
+            
+            <!-- Update Meal -->
+            <button class="update-btn btn orange">
+              <!-- Edit (Pencil) icon from FontAwesome -->
+              <i class="fa fa-pencil-square-o"></i> Update Meal
+            </button>
+
+            <!-- Delete Meal -->
+            <button class="delete-btn btn red">
+              <!-- Remove Icon from FontAwesome -->
+              <i class="fa fa-remove"></i> Delete Meal
+            </button>
+
+            <!-- Back Button -->
+            <button class="back-btn btn grey pull-right">
+              <!-- Back Icon from FontAwesome -->
+              <i class="fa fa-chevron-circle-left"></i> Back
+            </button>
+
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 
   <!-- Materialize CSS 1.0 Alpha -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.4/js/materialize.min.js"></script>
