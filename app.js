@@ -24,6 +24,9 @@ const ItemCtrl = (function(){
 
   // Public Methods
   return {
+    getItems: function(){
+      return data.item;
+    },
     logData: function(){
       return data;
     }
@@ -36,7 +39,23 @@ const UICtrl = (function(){
 
   // Public Methods
   return {
+    populateItemList: function(items){
+      let html = '';
 
+      items.forEach(function(item){
+         html += `
+         <li class="collection-item" id="item-${item.id}">
+            <strong>${item.name}: </strong> <em>${item.calories} Calories</em>
+            <a href="#" class="secondary-content">
+              <i class="edit-item fa fa-pencil"></i>
+            </a>
+          </li>
+         `;
+      });
+
+      // Insert List Items
+      document.querySelector('#item-list').innerHTML = html;
+    }
   }
 
 })();
@@ -48,7 +67,11 @@ const App = (function(ItemCtrl, UICtrl){
   // Public Methods
   return {
     init: function(){
-      console.log('Initializing App....');
+      // Fetch Items from the State / ExternalAPI and stored it somewhere seprate
+      const items = ItemCtrl.getItems();
+
+      // Send Data to UI for rendering ~ Populate List of Items
+      UICtrl.populateItemList(items);
     }
   }
 })(ItemCtrl, UICtrl);
