@@ -11,7 +11,11 @@ const ItemCtrl = (function(){
 
   // Data Structure / State
   const data = {
-    item: [],
+    item: [
+      {id: 0, name: 'Steak Dinner', calories: 1200},
+      {id: 1, name: 'Cookies', calories: 400},
+      {id: 2, name: 'Eggs', calories: 300}
+    ],
     // When I click the update button, then it'll reset to currentItem
     currentItem: null,
     totalCalories: 0
