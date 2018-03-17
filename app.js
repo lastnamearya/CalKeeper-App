@@ -13,9 +13,9 @@ const ItemCtrl = (function(){
   // Data Structure / State
   const data = {
     items: [
-      {id: 0, name: 'Steak Dinner', calories: 1200},
-      {id: 1, name: 'Cookies', calories: 400},
-      {id: 2, name: 'Eggs', calories: 300}
+      // {id: 0, name: 'Steak Dinner', calories: 1200},
+      // {id: 1, name: 'Cookies', calories: 400},
+      // {id: 2, name: 'Eggs', calories: 300}
     ],
     // When I click the update button, then it'll reset to currentItem
     currentItem: null,
@@ -91,6 +91,8 @@ const UICtrl = (function(){
       }
     },
     addListItem: function(item){
+      // Show the List 
+      document.querySelector(UISelectors.itemList).style.display = 'block';
       // Create Li Element
       const li = document.createElement('li');
       // Add Class
@@ -110,6 +112,10 @@ const UICtrl = (function(){
     clearInput: function(){
       document.querySelector(UISelectors.itemNameInput).value = "";
       document.querySelector(UISelectors.itemCaloriesInput).value = "";
+    },
+    // Clear the <ul> element on resetting the data / deleting all items
+    hideList: function(){
+      document.querySelector(UISelectors.itemList).style.display = 'none';
     },
     getSelectors: function(){
       return UISelectors;
@@ -160,8 +166,13 @@ const App = (function(ItemCtrl, UICtrl){
       // Fetch Items from the State / ExternalAPI and stored it somewhere seprate
       const items = ItemCtrl.getItems();
 
-      // Send Data to UI for rendering ~ Populate List of Items
-      UICtrl.populateItemList(items);
+      // Check if any items
+      if(items.length === 0){
+        UICtrl.hideList();
+      } else {
+        // Send Data to UI for rendering ~ Populate List of Items
+        UICtrl.populateItemList(items);
+      }
 
       // Load event listeners
       loadEventListeners();
