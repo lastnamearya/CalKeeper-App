@@ -58,6 +58,23 @@ const ItemCtrl = (function(){
       });
       return found;
     },
+    updateItem: function(name, calories){
+      // Calories to number, as it coming from form
+      calories = parseInt(calories);
+
+      let found = null;
+
+      data.items.forEach(function(item){
+        // Here's the trick, the edit item goes into the currentItem, but it's id is not going to change, only user is going to mutate name and calories value.
+        if(item.id === data.currentItem.id){
+          item.name = name;
+          item.calories = calories;
+          found = item;
+        }
+      });
+
+      return found;
+    },
     setCurrentItem: function(item){
       data.currentItem = item;
     },
@@ -208,7 +225,7 @@ const App = (function(ItemCtrl, UICtrl){
     document.querySelector(UISelectors.itemList).addEventListener('click', itemEditClick);
 
     // Update item event
-    // document.querySelector(UISelectors.updateBtn).addEventListener('click', itemUpdateSubmit);
+    document.querySelector(UISelectors.updateBtn).addEventListener('click', itemUpdateSubmit);
   }
 
   // add item submit
@@ -267,6 +284,12 @@ const App = (function(ItemCtrl, UICtrl){
   // Update Item Submit
 
   const itemUpdateSubmit = function(e){
+    // Get item input
+    const input = UICtrl.getItemInput();
+
+    // Update Item
+    const updatedItem = ItemCtrl.updateItem(input.name, input.calories);
+
     e.preventDefault();
   }
   
