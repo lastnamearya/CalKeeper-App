@@ -198,7 +198,7 @@ const App = (function(ItemCtrl, UICtrl){
     document.querySelector(UISelectors.addBtn).addEventListener('click', itemAddSubmit);
 
     // Edit Icon Click Event
-    document.querySelector(UISelectors.itemList).addEventListener('click', itemUpdateSubmit);
+    document.querySelector(UISelectors.itemList).addEventListener('click', itemEditClick);
   }
 
   // add item submit
@@ -226,8 +226,8 @@ const App = (function(ItemCtrl, UICtrl){
     e.preventDefault();
   }
 
-  // Update Item Submit
-  const itemUpdateSubmit = function(e){
+  // Item Edit Click
+  const itemEditClick = function(e){
 
     if(e.target.classList.contains('edit-item')){
       // Get List item id (item-0, item-1) of the collection list item ~ Now It's clear why Event Delegation is necassary here
