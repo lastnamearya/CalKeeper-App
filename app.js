@@ -165,6 +165,9 @@ const App = (function(ItemCtrl, UICtrl){
 
     // Add item event
     document.querySelector(UISelectors.addBtn).addEventListener('click', itemAddSubmit);
+
+    // Edit Icon Click Event
+    document.querySelector(UISelectors.itemList).addEventListener('click', itemUpdateSubmit);
   }
 
   // add item submit
@@ -191,6 +194,16 @@ const App = (function(ItemCtrl, UICtrl){
     
     e.preventDefault();
   }
+
+  // Update Item Submit
+  const itemUpdateSubmit = function(e){
+    if(e.target.classList.contains('edit-item')){
+      console.log('test');
+    }
+
+    e.preventDefault();
+  }
+
   
 
   // Public Methods
