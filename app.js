@@ -195,6 +195,15 @@ const App = (function(ItemCtrl, UICtrl){
     // Add item event
     document.querySelector(UISelectors.addBtn).addEventListener('click', itemAddSubmit);
 
+    // Disable submit on enter ~ it creates problem in edit / update
+    document.addEventListener('keypress', function(e){
+      // Enter key's code is 13 but some old browser don't support keyCode so we can also use .which with .keyCode
+      if(e.keyCode === 13 || e.which === 13){
+        e.preventDefault();
+        return false;
+      }
+    });
+
     // Edit Icon Click Event
     document.querySelector(UISelectors.itemList).addEventListener('click', itemEditClick);
 
@@ -255,11 +264,11 @@ const App = (function(ItemCtrl, UICtrl){
     e.preventDefault();
   }
 
-  // // Update Item Submit
+  // Update Item Submit
 
-  // const itemUpdateSubmit = function(e){
-  //   e.preventDefault();
-  // }
+  const itemUpdateSubmit = function(e){
+    e.preventDefault();
+  }
   
 
   // Public Methods
