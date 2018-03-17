@@ -33,12 +33,16 @@ const ItemCtrl = (function(){
   }
 })();
 
+// ************************************************************************************* //
+
 // UI Controller
 
 const UICtrl = (function(){
   const UISelectors = {
     itemList: '#item-list',
-    addBtn: '.add-btn'
+    addBtn: '.add-btn',
+    itemNameInput: '#item-name',
+    itemCaloriesInput: '#item-calories'
   }
 
   // Public Methods
@@ -60,12 +64,20 @@ const UICtrl = (function(){
       // Insert List Items
       document.querySelector(UISelectors.itemList).innerHTML = html;
     },
+    getItemInput: function(){
+      return {
+        name: document.querySelector(UISelectors.itemNameInput).value,
+        calories: document.querySelector(UISelectors.itemCaloriesInput).value
+      }
+    },
     getSelectors: function(){
       return UISelectors;
     }
   }
 
 })();
+
+// ************************************************************************************* //
 
 // App Controller
 
@@ -81,7 +93,10 @@ const App = (function(ItemCtrl, UICtrl){
 
   // add item submit
   const itemAddSubmit = function(e){
-    console.log('Add');
+    // Get form input from UI Controller
+    const input = UICtrl.getItemInput();
+
+    console.log(input);
     
     e.preventDefault();
   }
@@ -101,6 +116,8 @@ const App = (function(ItemCtrl, UICtrl){
     }
   }
 })(ItemCtrl, UICtrl);
+
+// ************************************************************************************* //
 
 // Init App
 App.init();
