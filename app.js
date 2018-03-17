@@ -168,6 +168,11 @@ const App = (function(ItemCtrl, UICtrl){
       // Add Item to UI List
       UICtrl.addListItem(newItem);
 
+      // Get Total Calories
+      const totalCalories = ItemCtrl.getTotalCalories();
+      // Render total Calories Value in the UI
+      UICtrl.showTotalCalories(totalCalories);
+
       // Clear Inputs fields
       UICtrl.clearInput();
     }
@@ -189,6 +194,8 @@ const App = (function(ItemCtrl, UICtrl){
         // Send Data to UI for rendering ~ Populate List of Items
         UICtrl.populateItemList(items);
       }
+
+      // Total Calories are also initialized while loading our App
 
       // Get Total Calories
       const totalCalories = ItemCtrl.getTotalCalories();
