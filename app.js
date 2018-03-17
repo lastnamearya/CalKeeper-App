@@ -47,6 +47,17 @@ const ItemCtrl = (function(){
 
       return newItem;
     },
+    getItemById: function(id){
+      let found = null;
+      
+      // Loop thorugh items
+      data.items.forEach(function(item){
+        if(item.id === id){
+          found = item;
+        }
+      });
+      return found;
+    },
     getTotalCalories: function() {
       let total = 0;
 
@@ -198,7 +209,19 @@ const App = (function(ItemCtrl, UICtrl){
   // Update Item Submit
   const itemUpdateSubmit = function(e){
     if(e.target.classList.contains('edit-item')){
-      console.log('test');
+      // Get List item id (item-0, item-1) of the collection list item ~ Now It's clear why Event Delegation is necassary here
+      const listId = e.target.parentNode.parentNode.id;
+      
+      // Break into an array
+      const listIdArr = listId.split('-');
+
+      // Get the Actual id, We get two values after parsing, 0 -> item 1 -> actual ID
+      const id = parseInt(listIdArr[1]);
+
+      // Get Item, sending the id to our State of the App ~ getItemById
+      const itemToEdit = ItemCtrl.getItemById(id);
+
+      console.log(itemToEdit);
     }
 
     e.preventDefault();
