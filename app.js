@@ -169,9 +169,6 @@ const UICtrl = (function(){
       document.querySelector(UISelectors.addBtn).style.display = 'inline';
     },
     showEditState: function(){
-      // Step 1: Clear Input Fields
-      UICtrl.clearInput();
-      // Step 2: Hide all those button except Add button, make it inline
       document.querySelector(UISelectors.updateBtn).style.display = 'inline';
       document.querySelector(UISelectors.deleteBtn).style.display = 'inline';
       document.querySelector(UISelectors.backBtn).style.display = 'inline';
@@ -189,6 +186,7 @@ const UICtrl = (function(){
 // App Controller
 
 const App = (function(ItemCtrl, UICtrl){
+
   // Load event Listeners
   const loadEventListeners = function() {
     // Get uI Selectors
@@ -199,6 +197,9 @@ const App = (function(ItemCtrl, UICtrl){
 
     // Edit Icon Click Event
     document.querySelector(UISelectors.itemList).addEventListener('click', itemEditClick);
+
+    // Update item event
+    // document.querySelector(UISelectors.updateBtn).addEventListener('click', itemUpdateSubmit);
   }
 
   // add item submit
@@ -227,6 +228,7 @@ const App = (function(ItemCtrl, UICtrl){
   }
 
   // Item Edit Click
+
   const itemEditClick = function(e){
 
     if(e.target.classList.contains('edit-item')){
@@ -253,6 +255,11 @@ const App = (function(ItemCtrl, UICtrl){
     e.preventDefault();
   }
 
+  // // Update Item Submit
+
+  // const itemUpdateSubmit = function(e){
+  //   e.preventDefault();
+  // }
   
 
   // Public Methods
