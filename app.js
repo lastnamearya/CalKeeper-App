@@ -61,6 +61,9 @@ const ItemCtrl = (function(){
     setCurrentItem: function(item){
       data.currentItem = item;
     },
+    getCurrentItem: function(){
+      return data.currentItem;
+    },
     getTotalCalories: function() {
       let total = 0;
 
@@ -144,6 +147,10 @@ const UICtrl = (function(){
       document.querySelector(UISelectors.itemNameInput).value = "";
       document.querySelector(UISelectors.itemCaloriesInput).value = "";
     },
+    addItemToForm: function(){
+      document.querySelector(UISelectors.itemNameInput).value = ItemCtrl.getCurrentItem().name;
+      document.querySelector(UISelectors.itemCaloriesInput).value = ItemCtrl.getCurrentItem().calories;
+    },
     // Clear the <ul> element on resetting the data / deleting all items
     hideList: function(){
       document.querySelector(UISelectors.itemList).style.display = 'none';
@@ -211,6 +218,7 @@ const App = (function(ItemCtrl, UICtrl){
 
   // Update Item Submit
   const itemUpdateSubmit = function(e){
+
     if(e.target.classList.contains('edit-item')){
       // Get List item id (item-0, item-1) of the collection list item ~ Now It's clear why Event Delegation is necassary here
       const listId = e.target.parentNode.parentNode.id;
@@ -226,6 +234,10 @@ const App = (function(ItemCtrl, UICtrl){
 
       // Set current Item
       ItemCtrl.setCurrentItem(itemToEdit);
+
+      // Add Item to form, we don't need to pass the item, because it's now saved in the currentItem
+      UICtrl.addItemToForm();
+
     }
 
     e.preventDefault();
