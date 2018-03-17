@@ -12,7 +12,7 @@ const ItemCtrl = (function(){
 
   // Data Structure / State
   const data = {
-    item: [
+    items: [
       {id: 0, name: 'Steak Dinner', calories: 1200},
       {id: 1, name: 'Cookies', calories: 400},
       {id: 2, name: 'Eggs', calories: 300}
@@ -25,10 +25,27 @@ const ItemCtrl = (function(){
   // Public Methods
   return {
     getItems: function(){
-      return data.item;
+      return data.items;
     },
     addItem: function(name, calories){
-      console.log(name, calories);
+      let ID;
+      // Create ID
+      if(data.items.length > 0){
+        ID = data.items[data.items.length - 1].id + 1;
+      } else {
+        ID = 0;
+      }
+
+      // Calories to Number
+      calories = parseInt(calories);
+
+      // Create new item
+      newItem = new Item(ID, name, calories);
+
+      // Adding New Item to our Data Structure ~ State of our App
+      data.items.push(newItem);
+
+      return newItem;
     },
     logData: function(){
       return data;
