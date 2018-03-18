@@ -4,7 +4,7 @@ const StorageCtrl = (function(){
   // Public Methods
   return {
     storeItem: function(item){
-      let items = [];
+      let items;
       
       // Check if any items in LocalStorage
       if(localStorage.getItem('items') === null){
@@ -23,6 +23,15 @@ const StorageCtrl = (function(){
         // Re-setting Data in Local Storage
         localStorage.setItem('items', JSON.stringify(items));
       }
+    },
+    getItemsFromLocalStorage: function(){
+      let items;
+      if(localStorage.getItem('items') === null){
+        items = [];
+      } else {
+        items = JSON.parse(localStorage.getItem('items'));
+      }
+      return items;
     }
   }
 })();
@@ -41,11 +50,12 @@ const ItemCtrl = (function(){
 
   // Data Structure / State
   const data = {
-    items: [
-      // {id: 0, name: 'Steak Dinner', calories: 1200},
-      // {id: 1, name: 'Cookies', calories: 400},
-      // {id: 2, name: 'Eggs', calories: 300}
-    ],
+    // items: [
+    //   // {id: 0, name: 'Steak Dinner', calories: 1200},
+    //   // {id: 1, name: 'Cookies', calories: 400},
+    //   // {id: 2, name: 'Eggs', calories: 300}
+    // ],
+    items: StorageCtrl.getItemsFromLocalStorage(),
     // When I click the update button, then it'll reset to currentItem
     currentItem: null,
     totalCalories: 0
