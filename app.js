@@ -54,6 +54,10 @@ const StorageCtrl = (function(){
       });
       // Re-setting Data in Local Storage
       localStorage.setItem('items', JSON.stringify(items));
+    },
+    clearItemsFromStorage: function(){
+      // It'll clear all items from Local Storage
+      localStorage.removeItem('items');
     }
   }
 })();
@@ -470,6 +474,9 @@ const App = (function(ItemCtrl, StorageCtrl, UICtrl, ){
 
     // Remove from UI
     UICtrl.removeItems();
+
+    // Clear from Local Storage
+    StorageCtrl.clearItemsFromStorage();
 
     // Hide <ul>
     UICtrl.hideList();
