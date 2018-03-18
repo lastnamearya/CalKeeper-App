@@ -516,4 +516,4 @@ const App = (function(ItemCtrl, StorageCtrl, UICtrl, ){
 // ************************************************************************************* //
 
 // Init App
-App.init();
+App.init(); 
