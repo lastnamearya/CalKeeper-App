@@ -1,4 +1,15 @@
 // Storage Controller - LocalStorage
+const StorageCtrl = (function(){
+   
+  // Public Methods
+  return {
+    storeItem: function(){
+
+    }
+  }
+})();
+
+// ************************************************************************************* //
 
 // Item Controller - State of our Application
 
@@ -106,7 +117,7 @@ const ItemCtrl = (function(){
 
       // Set total cal in the data structure
       data.totalCalories = total;
-      
+
       // Return total
       return data.totalCalories;
     },
