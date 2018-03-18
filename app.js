@@ -3,8 +3,26 @@ const StorageCtrl = (function(){
    
   // Public Methods
   return {
-    storeItem: function(){
+    storeItem: function(item){
+      let items = [];
+      
+      // Check if any items in LocalStorage
+      if(localStorage.getItem('items') === null){
+        items = [];
+        // Push new item
+        items.push(item);
+        // Set Local Storage
+        localStorage.setItem('items', JSON.stringify(items));
+      } else {
+        // Get Data from Local Storage
+        items = JSON.parse(localStorage.getItem('items'));
 
+        // Push new item 
+        items.push(item);
+
+        // Re-setting Data in Local Storage
+        localStorage.setItem('items', JSON.stringify(items));
+      }
     }
   }
 })();
@@ -275,7 +293,7 @@ const UICtrl = (function(){
 
 // App Controller
 
-const App = (function(ItemCtrl, UICtrl){
+const App = (function(ItemCtrl, StorageCtrl, UICtrl, ){
 
   // Load event Listeners
   const loadEventListeners = function() {
@@ -327,6 +345,9 @@ const App = (function(ItemCtrl, UICtrl){
       const totalCalories = ItemCtrl.getTotalCalories();
       // Render total Calories Value in the UI
       UICtrl.showTotalCalories(totalCalories);
+
+      // Store in localStorage
+      StorageCtrl.storeItem(newItem);
 
       // Clear Inputs fields
       UICtrl.clearInput();
@@ -447,7 +468,7 @@ const App = (function(ItemCtrl, UICtrl){
       loadEventListeners();
     }
   }
-})(ItemCtrl, UICtrl);
+})(ItemCtrl, StorageCtrl, UICtrl);
 
 // ************************************************************************************* //
 
