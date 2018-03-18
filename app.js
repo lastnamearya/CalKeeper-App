@@ -193,6 +193,20 @@ const UICtrl = (function(){
         }
       }); 
     },
+    deleteListItem(id){
+      const itemID = `#item-${id}`;
+      const item = document.querySelector(itemID);
+      item.remove();
+
+    // After Deleting, now calculate the mutated Total Calories
+
+    // Get Total Calories
+    const totalCalories = ItemCtrl.getTotalCalories();
+    // Render total Calories Value in the UI
+    UICtrl.showTotalCalories(totalCalories);
+
+    UICtrl.clearEditState();
+    },
     clearInput: function(){
       document.querySelector(UISelectors.itemNameInput).value = "";
       document.querySelector(UISelectors.itemCaloriesInput).value = "";
@@ -351,6 +365,9 @@ const App = (function(ItemCtrl, UICtrl){
 
     // Delete from Data Structure
     ItemCtrl.deleteItem(currentItem.id);
+
+    // Delete from List Item
+    UICtrl.deleteListItem(currentItem.id);
 
     e.preventDefault();
   }
