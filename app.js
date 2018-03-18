@@ -107,6 +107,7 @@ const ItemCtrl = (function(){
 const UICtrl = (function(){
   const UISelectors = {
     itemList: '#item-list',
+    listItems: '#item-list li',
     addBtn: '.add-btn',
     updateBtn: '.update-btn',
     deleteBtn: '.delete-btn',
@@ -159,6 +160,27 @@ const UICtrl = (function(){
       `;
       // Insert HTML
       document.querySelector(UISelectors.itemList).insertAdjacentElement('beforeend', li);
+    },
+    updateListItem: function(item){
+      // It'll give us a Node List
+      let listItems = document.querySelectorAll(UISelectors.listItems);
+
+      // Turn Node List into array
+      listItems = Array.from(listItems);
+
+      listItems.forEach(function(listItem){
+        const itemID = listItem.getAttribute('id');
+
+        if(itemID === `item-${item.id}`){
+          document.querySelector(`#${itemID}`).innerHTML = `
+          <strong>${item.name}: </strong> <em>${item.calories} Calories</em>
+            <a href="#" class="secondary-content">
+              <i class="edit-item fa fa-pencil"></i>
+            </a>
+          `;
+        }
+      });
+      
     },
     clearInput: function(){
       document.querySelector(UISelectors.itemNameInput).value = "";
@@ -287,8 +309,20 @@ const App = (function(ItemCtrl, UICtrl){
     // Get item input
     const input = UICtrl.getItemInput();
 
-    // Update Item
+    // Update Item, Recalling assignments happens from right to left in JavaScript
     const updatedItem = ItemCtrl.updateItem(input.name, input.calories);
+
+    // Update UI with the new Updated Item ~ successfully added to our Data Strucutre
+    UICtrl.updateListItem(updatedItem);
+
+    // After updating, now calculate the mutated Total Calories
+
+    // Get Total Calories
+    const totalCalories = ItemCtrl.getTotalCalories();
+    // Render total Calories Value in the UI
+    UICtrl.showTotalCalories(totalCalories);
+
+    UICtrl.clearEditState();
 
     e.preventDefault();
   }
